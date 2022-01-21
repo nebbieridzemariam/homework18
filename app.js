@@ -1,22 +1,22 @@
 // // #1
 
-// setInterval (showTime, 1000);
-// function showTime() {
-// let time= new Date();
-// let hour= time.getHours();
-// let min= time.getMinutes();
-// let sec= time.getSeconds();
-// const ampm = hour >= 12 ? 'pm' : 'am';
+setInterval (showTime, 1000);
+function showTime() {
+let time= new Date();
+let hour= time.getHours();
+let min= time.getMinutes();
+let sec= time.getSeconds();
+const ampm = hour >= 12 ? 'pm' : 'am';
 
-//     hour = hour < 10 ? "0" + hour : hour;
-//     min = min < 10 ? "0" + min : min;
-//     sec = sec < 10 ? "0" + sec : sec;
+    hour = hour < 10 ? "0" + hour : hour;
+    min = min < 10 ? "0" + min : min;
+    sec = sec < 10 ? "0" + sec : sec;
   
-//     let currentTime = hour + ":" + min + ":" + sec + ampm;
-//     document.getElementById("myclockdisplay")
-//             .innerHTML = currentTime;
-// }
-// showTime();
+    let currentTime = hour + ":" + min + ":" + sec + ampm;
+    document.getElementById("myclockdisplay")
+            .innerHTML = currentTime;
+}
+showTime();
 
 // #2
 const sliderItems = document.querySelectorAll('.slider-item');
@@ -28,17 +28,12 @@ let activeIndex = 0;
 let timeoutId = null;
 
 function initSlider(){
-  nextSlideBtn.addEventListener('click', showNextSlide);
-  prevSlideBtn.addEventListener('click', showPrevSlide);
-  startAutoSliding.addEventListener('click', startAutoSlidingFn)
-  stopAutoSliding.addEventListener('click', stopAutoSlidingFn);
-  document.addEventListener('keyup', e => {
-    if(e.code === 'ArrowLeft') {
-      showPrevSlide();
-    }
-    console.log(e.code);
-  });
-  renderSlides();
+    nextSlideBtn.addEventListener('click', showNextSlide);
+    prevSlideBtn.addEventListener('click', showPrevSlide);
+    startAutoSliding.addEventListener('click', startAutoSlidingFn)
+    stopAutoSliding.addEventListener('click', stopAutoSlidingFn);
+
+    renderSlides();
 }
 initSlider();
 
@@ -54,6 +49,12 @@ function renderSlides() {
       slide.classList.remove('active');
     }
   });
+}
+
+function showSlideOnIndex(event){
+    
+    activeIndex = event.target.value;
+    renderSlides();
 }
 
 function showNextSlide(){
@@ -79,11 +80,17 @@ function startAutoSlidingFn() {
 }
 
 function stopAutoSlidingFn() {
+    console.log('apa');
   if(timeoutId){
     clearInterval(timeoutId);
     timeoutId = null;
   }
 }
-const mousetarget = document.querySelector('.slider-wrapper');
-mousetarget.addEventListener( 'mouseenter', stopAutoSlidingFn);
-// mousetarget.addEventListener( 'mouseleave', startAutoSlidingFn);
+
+document.querySelector('.slider-wrapper').addEventListener( 'mouseleave', startAutoSlidingFn);
+document.querySelector('.slider-wrapper').addEventListener( 'mouseenter', stopAutoSlidingFn);
+
+document.querySelectorAll('.dot-button').forEach( (button, i) => {
+    button.addEventListener('click', showSlideOnIndex);
+});
+

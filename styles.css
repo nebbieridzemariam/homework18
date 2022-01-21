@@ -1,15 +1,18 @@
-/* body {
+#myclockdisplay { 
     background: black;
+    width: 200px;
+    height: 75px;
+    text-align: center;
+    padding-top: 20px;
 }
 
 .clock {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
+    margin-bottom: 20px;
+    margin-left: 20px;
     color: #17D4FE;
-    font-size: 60px;
-} */
+    font-size: 30px;
+} 
 
 html, body {
     margin: 0;
@@ -28,6 +31,11 @@ html, body {
     opacity: 0;
     transition: opacity 0.5s;
 }
+
+.dot-button{
+    display: block;
+}
+
 .slider-item.animating {
     display: block;
     visibility: hidden;
@@ -47,4 +55,11 @@ html, body {
 }
 .slider-btns {
     text-align: center;
+    display: flex;
+    width: 30px;
+    height: 30px;
+}
+.btnimg{
+    width: 30px;
+    height: 30px;
 }
